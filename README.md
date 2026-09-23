@@ -1,13 +1,21 @@
 # 🤖 AI SQL Assistant
 
-**Ask your company database questions in plain English.**
+**Ask your company database questions in plain English. The AI writes the SQL, runs it, and answers with a chart.**
+
+[![Live demo](https://img.shields.io/badge/Live%20demo-Open%20the%20app-ff4b4b?style=for-the-badge&logo=streamlit&logoColor=white)](https://ai-data-assistant-app.streamlit.app)
+&nbsp;
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
+![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=black)
+
+![Demo: asking a question and getting SQL, a chart and an answer](assets/demo.gif)
+
+🔗 **Try it live:** https://ai-data-assistant-app.streamlit.app
 
 Most people in a company can't write SQL, so every data question waits for an analyst.
 This app lets anyone **ask the company database a question in plain English**. The AI (Google Gemini)
 writes the SQL, including the JOINs across tables, the database runs it, and the user gets a
 **chart, a table and a plain-English answer**.
-
-**Live demo:** _add your Streamlit Cloud link here_
 
 ## What it does
 
@@ -18,6 +26,20 @@ writes the SQL, including the JOINs across tables, the database runs it, and the
 - **Follow-up questions** work: *"now only for the West region"*
 - **Fixes its own mistakes**: if a query fails, the error goes back to the AI and it corrects the SQL
 - **Shows its work**: every answer has the SQL, the tables it joined and how long it took
+
+## Screenshots
+
+| Ask in plain English | Get a chart + answer |
+|---|---|
+| ![Home screen](assets/01-home.png) | ![Line chart answer](assets/02-answer-line-chart.png) |
+| **See the SQL the AI wrote** | **Pie chart for shares** |
+| ![Generated SQL](assets/03-generated-sql.png) | ![Pie chart answer](assets/04-answer-pie-chart.png) |
+
+**The database and how the tables connect**
+
+![Database diagram](assets/05-database-diagram.png)
+
+🎬 A full screen recording is in [assets/demo.webm](assets/demo.webm).
 
 ## The database
 
@@ -106,7 +128,7 @@ erDiagram
 | `orders` | One row per customer order. |
 | `order_items` | The products inside each order (one row per product per order). |
 
-The diagram also appears in the app (**Database & relationships** tab) and in [docs/er_diagram.html](docs/er_diagram.html).
+The diagram also appears in the app (**Database & relationships** tab) and in [er_diagram.html](er_diagram.html).
 
 ## How it works
 
@@ -144,6 +166,7 @@ Python · Streamlit · DuckDB (SQL) · pandas · Plotly · Google Gemini API
 | `app.py` | The app: the AI prompts, running the SQL, charts and the page layout |
 | `database.py` | Table definitions, relationships, business rules and the data generator |
 | `requirements.txt` | Python packages |
+| `assets/` | Screenshots, demo GIF and video |
 | `.env` | Your API key (stays on your computer, never uploaded) |
 
 ## Run it on your computer
@@ -167,7 +190,7 @@ Get a Gemini API key at **https://aistudio.google.com/apikey**.
    LLM_API_KEY = "your-gemini-key"
    ```
    Only you can see this box. The key stays on Streamlit's server and never reaches visitors' browsers.
-4. Click **Deploy**. After about 2 minutes you get a public link like `https://ai-sql-assistant.streamlit.app` (you choose the name).
+4. Click **Deploy**. After about 2 minutes you get a public link like `https://ai-data-assistant-app.streamlit.app` (you choose the name).
 
 ### Protecting your AI credit
 The app is public, so visitors' questions use your Gemini credit. It has built-in limits:
