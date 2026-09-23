@@ -1,0 +1,67 @@
+erDiagram
+    regions ||--o{ stores : "region_id"
+    stores ||--o{ employees : "store_id"
+    regions ||--o{ customers : "region_id"
+    categories ||--o{ products : "category_id"
+    customers ||--o{ orders : "customer_id"
+    stores ||--o{ orders : "store_id"
+    employees ||--o{ orders : "employee_id"
+    orders ||--o{ order_items : "order_id"
+    products ||--o{ order_items : "product_id"
+    regions {
+        int region_id PK
+        string region_name
+    }
+    stores {
+        int store_id PK
+        string store_name
+        string city
+        int region_id FK
+        string store_type
+    }
+    employees {
+        int employee_id PK
+        string first_name
+        string last_name
+        string job_title
+        int store_id FK
+        date hire_date
+    }
+    customers {
+        int customer_id PK
+        string first_name
+        string last_name
+        string city
+        int region_id FK
+        string segment
+        string loyalty_tier
+        date signup_date
+    }
+    categories {
+        int category_id PK
+        string category_name
+    }
+    products {
+        int product_id PK
+        string product_name
+        int category_id FK
+        decimal list_price
+        decimal unit_cost
+    }
+    orders {
+        int order_id PK
+        int customer_id FK
+        int store_id FK
+        int employee_id FK
+        date order_date
+        string channel
+        string status
+    }
+    order_items {
+        int order_item_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        decimal unit_price
+        decimal discount
+    }
