@@ -191,24 +191,3 @@ Get a Gemini API key at **https://aistudio.google.com/apikey**.
    ```
    Only you can see this box. The key stays on Streamlit's server and never reaches visitors' browsers.
 4. Click **Deploy**. After about 2 minutes you get a public link like `https://ai-data-assistant-app.streamlit.app` (you choose the name).
-
-### Protecting your AI credit
-The app is public, so visitors' questions use your Gemini credit. It has built-in limits:
-- **Daily cap for the whole site:** at most `QUESTIONS_PER_DAY` (default 200) new AI questions per day. After that, the app stops calling the AI until tomorrow.
-- **Per-visitor limit:** at most `QUESTIONS_PER_VISITOR` (default 20) new questions per visit.
-- **Answer cache:** a question someone already asked is answered again from memory, for free and instantly.
-- Questions longer than 300 characters are rejected.
-
-You can change the limits in `.env`, or in the Secrets box when deployed, e.g. `QUESTIONS_PER_DAY = 100`.
-As a backup, set a budget alert in Google Cloud (**Billing → Budgets & alerts**).
-
-> Free apps go to sleep after a few days without visitors. Anyone who opens the link can wake the app with one click.
-
-To use another AI provider, set `LLM_BASE_URL` and `LLM_MODEL` in `.env` (and in the Secrets box when deployed).
-Any OpenAI-compatible API works, e.g. Groq (`https://api.groq.com/openai/v1`, `llama-3.3-70b-versatile`).
-
-## Resume bullet points
-
-- Built and deployed **AI SQL Assistant**, an AI text-to-SQL app (Python, Streamlit, DuckDB, Google Gemini) that lets non-technical users query an **8-table relational database** in plain English.
-- Designed the prompt with **schema metadata, foreign-key relationships and business metric definitions**, so the LLM generates correct multi-table JOINs and consistent KPIs.
-- Added **usage limits and answer caching** to control API cost on the public demo, plus **automatic chart selection**, plain-English answers, follow-up questions and a **self-correcting retry loop** that feeds SQL errors back to the model; queries run **read-only**.
